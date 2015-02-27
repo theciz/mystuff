@@ -1,0 +1,14 @@
+$OpenBSD$
+--- libpolyml/x86_dep.cpp.orig	Sun Mar 16 14:35:30 2014
++++ libpolyml/x86_dep.cpp	Fri Feb 27 06:04:33 2015
+@@ -915,8 +915,8 @@ bool X86Dependent::GetPCandSPFromContext(TaskData *tas
+ #endif /* HOSTARCHITECTURE_X86_64 */
+ #endif
+ #elif defined(HAVE_STRUCT_SIGCONTEXT)
+-    pc = (byte*)context->sc_pc;
+-    sp = (PolyWord*)context->sc_sp;
++    pc = (byte*)context->sc_rip;
++    sp = (PolyWord*)context->sc_rsp;
+ #elif defined(HAVE_WINDOWS_H)
+ #ifdef _WIN64
+     sp = (PolyWord *)context->Rsp;
